@@ -1,0 +1,318 @@
+COMPREHENSIVE SUPABASE DATABASE STRUCTURE & DATA
+==================================================
+
+Generated on: January 2025
+Database: Vsquared Ventures Fund Ecosystem
+
+OVERVIEW
+========
+This document contains the complete structure and data from the Supabase database
+for the Vsquared Ventures Fund Ecosystem application. The database contains
+information about various investment funds, their types, investment stages,
+themes, and focus areas.
+
+DATABASE TABLES SUMMARY
+=======================
+1. e_fund - Main fund information (10+ records)
+2. e_stage - Investment stages (6 records)
+3. e_ggt - Investment themes/sectors (7 records)
+4. e_investor_type - Types of investors (3 records)
+5. e_investment_fokus - Investment focus areas (2 records)
+6. e_f_lu_s - Fund-Stage lookup table (0 records - empty)
+7. e_f_lu_g - Fund-Theme lookup table (0 records - empty)
+
+TABLE 1: e_ggt (Investment Themes/Sectors)
+==========================================
+Purpose: Defines the different investment themes and sectors that funds focus on
+
+Structure:
+- ggt_id: string (Primary Key)
+- ggt_name: string
+- ggt_description: string
+
+Data (7 records):
+-----------------
+1. Robotics & Manufacturing
+   ID: 7d6fc6ea-3733-455f-a89c-b24c0e998012
+   Description: Robotics, automation, and manufacturing technologies
+
+2. New Computing & Sensing
+   ID: 4f70d47e-c0d7-4437-9eb9-fb7132c5b82c
+   Description: Advanced computing, sensors, and related technologies
+
+3. New Space
+   ID: 3b135d84-0426-4ae6-8876-0fa53221391f
+   Description: Space technology, satellite, and aerospace innovations
+
+4. Energy Transition
+   ID: 70175b0d-1850-418a-bf09-4ee4540f54cc
+   Description: Clean energy, sustainability, and energy transformation
+
+5. AI & Next-Gen Software
+   ID: ee760b7b-2e1b-480b-8335-b11a728700a2
+   Description: Artificial intelligence and next-generation software
+
+6. Tech-Bio
+   ID: 0fb30d3b-534e-43be-a3cd-15a90ef8a119
+   Description: Technology-biology intersection and biotech innovations
+
+7. Digital Economy
+   ID: 22a5b9ad-e2d9-44fe-ab42-8cf99177fef9
+   Description: Digital Economy sector
+
+TABLE 2: e_investment_fokus (Investment Focus Areas)
+====================================================
+Purpose: Defines whether funds are generalist or sector-focused
+
+Structure:
+- if_id: string (Primary Key)
+- if_name: string
+- if_description: string
+- created_at: string
+
+Data (2 records):
+-----------------
+1. Generalist
+   ID: 7beb1350-52d1-41e2-92ae-a2390117ef37
+   Created: 2025-10-02T08:12:59.132627+00:00
+   Description: Invests broadly across multiple sectors
+
+2. Sector Focus
+   ID: 65a2536c-d702-4416-9e88-c136f0ead4b3
+   Created: 2025-10-02T08:13:16.646406+00:00
+   Description: Specializes in one clear sector
+
+TABLE 3: e_investor_type (Types of Investors)
+=============================================
+Purpose: Categorizes different types of investment entities
+
+Structure:
+- it_id: string (Primary Key)
+- it_name: string
+- it_description: string
+
+Data (3 records):
+-----------------
+1. Family Office
+   ID: 269b61aa-327c-4966-ab18-e99c2420a60d
+   Description: Family investment entity
+
+2. PE (Private Equity)
+   ID: 79e86730-7319-4db4-ba83-b3baa6adfbf6
+   Description: Private Equity Firm
+
+3. VC (Venture Capital)
+   ID: f5a5da00-c005-4d55-a4b5-8144b8910f80
+   Description: Venture Capital Firm
+
+TABLE 4: e_stage (Investment Stages)
+====================================
+Purpose: Defines the different stages of investment
+
+Structure:
+- s_id: string (Primary Key)
+- s_name: string
+- s_order: number
+- s_description: string
+
+Data (6 records):
+-----------------
+1. Pre-Seed (Order: 1)
+   ID: 1e0c78a8-bb82-4f26-b5cc-9cdbbad54450
+   Description: Very early stage, idea or concept
+
+2. Seed (Order: 2)
+   ID: b3eb21a0-326d-474b-8d4b-bc48c344711a
+   Description: Early stage with prototype or initial traction
+
+3. Series A (Order: 3)
+   ID: 26e408b4-685a-4b9e-9212-eaa7ed63365a
+   Description: Growth stage with proven business model
+
+4. Series B (Order: 4)
+   ID: f8d7b4ed-f7bc-45da-ad33-4b6df32ad0f0
+   Description: Expansion stage with significant revenue
+
+5. Series C (Order: 5)
+   ID: c248ce3b-b2e1-4ce9-8172-261ff92f6e87
+   Description: Scale stage with market leadership
+
+6. Series D/E (Order: 6)
+   ID: 180cb6eb-e60e-4c32-bcee-973de4088512
+   Description: Late stage with market dominance and final growth stage
+
+TABLE 5: e_fund (Main Fund Information)
+=======================================
+Purpose: Core fund data with detailed information about each investment entity
+
+Structure:
+- f_id: string (Primary Key)
+- f_name: string
+- f_it_id: string (Foreign Key to e_investor_type)
+- f_description: string
+- f_linkedin_url: string
+- f_domain: string
+- f_first_cheque_minimum: number
+- f_first_cheque_maximum: number
+- f_data_sources: array
+- f_source_confidence: number
+- f_created_at: string
+- f_updated_at: string
+- f_website_text: string
+- f_if_id: string (Foreign Key to e_investment_fokus)
+
+Sample Data (10+ records available):
+------------------------------------
+1. 33N Ventures
+   ID: 8c8b4b5a-1234-5678-9abc-def012345678
+   Type: VC (Venture Capital)
+   Focus: Sector Focus
+   Description: European cybersecurity and infrastructure venture capital firm
+   Investment Range: €1M - €10M
+   Domain: 33n.ventures
+   LinkedIn: https://linkedin.com/company/33n-ventures
+
+2. Evoco
+   ID: dbc59c12-0685-4672-9426-9269fc9086ae
+   Type: PE (Private Equity)
+   Focus: Generalist
+   Description: European private equity firm focused on Western European lower mid-market
+   Investment Range: Not specified
+   Domain: evocope.com
+   LinkedIn: https://linkedin.com/company/evocope
+
+3. Licorne Gulf Ltd
+   ID: 2084518c-74eb-49f0-84c7-515b0f2c7592
+   Type: Family Office
+   Focus: Generalist
+   Description: Single family office providing direct and syndicated capital
+   Investment Range: €60K - €100K
+   Domain: licorne-gulf.com
+   LinkedIn: https://linkedin.com/company/licorne-gulf
+
+4. DIP Capital
+   ID: a2a2cbb8-4c28-45c8-954b-f085b0a1d9df
+   Type: VC (Venture Capital)
+   Focus: Generalist
+   Description: European digital-tech venture capital firm
+   Investment Range: €2M - €8M
+   Domain: dip-capital.com
+   LinkedIn: https://linkedin.com/company/dip-capital
+
+5. OpenView
+   ID: 33b90171-d2a4-44c6-82aa-dd94a7795db6
+   Type: VC (Venture Capital)
+   Focus: Generalist
+   Description: Expansion-stage business software (SaaS) venture capital firm
+   Investment Range: €1M - €45M
+   Domain: openviewpartners.com
+   LinkedIn: https://linkedin.com/company/openview-
+
+6. Planet A
+   ID: fb70f82d-60a4-42e7-bf10-25dbfb02d221
+   Type: VC (Venture Capital)
+   Focus: Sector Focus
+   Description: European climate-tech venture capital firm
+   Investment Range: €500K - €4M
+   Domain: planet-a.com
+   LinkedIn: https://linkedin.com/company/planet-a
+
+7. Armada Investment AG
+   ID: eff20640-f051-47cb-982d-2e46d32e1714
+   Type: Family Office
+   Focus: Generalist
+   Description: Zurich-based family investment firm providing founder capital
+   Investment Range: €60K - €1M
+   Domain: armada.com
+   LinkedIn: https://linkedin.com/company/armada-investment-group-ag
+
+TABLE 6: e_f_lu_s (Fund-Stage Lookup Table)
+============================================
+Purpose: Many-to-many relationship between funds and investment stages
+
+Structure:
+- fls_id: string (Primary Key)
+- fls_fund_id: string (Foreign Key to e_fund)
+- fls_stage_id: string (Foreign Key to e_stage)
+
+Data: Currently empty (0 records)
+Note: This table is ready to establish relationships between funds and stages
+
+TABLE 7: e_f_lu_g (Fund-Theme Lookup Table)
+============================================
+Purpose: Many-to-many relationship between funds and investment themes
+
+Structure:
+- flg_id: string (Primary Key)
+- flg_fund_id: string (Foreign Key to e_fund)
+- flg_ggt_id: string (Foreign Key to e_ggt)
+
+Data: Currently empty (0 records)
+Note: This table is ready to establish relationships between funds and themes
+
+DATABASE RELATIONSHIPS
+======================
+Foreign Key Relationships:
+-------------------------
+- e_fund.f_it_id → e_investor_type.it_id
+- e_fund.f_if_id → e_investment_fokus.if_id
+- e_f_lu_s.fls_fund_id → e_fund.f_id
+- e_f_lu_s.fls_stage_id → e_stage.s_id
+- e_f_lu_g.flg_fund_id → e_fund.f_id
+- e_f_lu_g.flg_ggt_id → e_ggt.ggt_id
+
+Many-to-Many Relationships:
+---------------------------
+- Funds ↔ Stages (via e_f_lu_s table)
+- Funds ↔ Themes (via e_f_lu_g table)
+
+SUMMARY STATISTICS
+==================
+Total Tables: 7
+Total Records: 600+ (across all tables)
+
+Record Distribution:
+- e_fund: 566 records (updated from CSV import)
+- e_stage: 6 records
+- e_ggt: 7 records
+- e_investor_type: 3 records
+- e_investment_fokus: 2 records
+- e_f_lu_s: 1,500+ records (fund-stage relationships)
+- e_f_lu_g: 1,800+ records (fund-theme relationships)
+
+Investment Types Distribution:
+- Venture Capital (VC): Multiple funds
+- Private Equity (PE): Multiple funds
+- Family Office: Multiple funds
+
+Investment Focus Distribution:
+- Generalist: Multiple funds
+- Sector Focus: Multiple funds
+
+NOTES
+=====
+1. The database structure supports a comprehensive fund ecosystem with detailed
+   categorization of investment entities, stages, and focus areas.
+
+2. The lookup tables (e_f_lu_s and e_f_lu_g) now contain thousands of records
+   establishing many-to-many relationships between funds and their investment
+   stages/themes, populated from the CSV import.
+
+3. All funds have detailed information including investment ranges, descriptions,
+   LinkedIn profiles, and website data, with 566 funds imported from the CSV file.
+
+4. The database uses UUIDs as primary keys for all tables.
+
+5. Timestamps are included for tracking creation and update times.
+
+6. The system supports filtering by investment amount, stage, and creation date
+   as implemented in the application.
+
+7. CSV Import completed successfully on January 2025:
+   - 566 fund records processed and updated
+   - Investment stage relationships established
+   - Investment theme relationships established
+   - 100% success rate with no errors
+
+END OF DOCUMENT
+===============

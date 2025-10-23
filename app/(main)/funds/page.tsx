@@ -12,9 +12,7 @@ export default async function FundsPage() {
 
   return (
     <div className="min-h-screen bg-background">
-      <div className="container mx-auto p-6">
-        <FundList />
-      </div>
+      <FundList />
     </div>
   )
 }

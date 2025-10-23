@@ -66,3 +66,62 @@
     @apply bg-background text-foreground;
   }
 }
+
+@layer utilities {
+  /* Custom scrollbar styles for modals */
+  .modal-scrollbar::-webkit-scrollbar {
+    width: 8px !important;
+  }
+  
+  .modal-scrollbar::-webkit-scrollbar-track {
+    background: transparent !important;
+    border-radius: 10px !important;
+  }
+  
+  .modal-scrollbar::-webkit-scrollbar-thumb {
+    background: #d1d5db !important;
+    border-radius: 10px !important;
+    border: 2px solid transparent !important;
+    background-clip: content-box !important;
+  }
+  
+  .modal-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #9ca3af !important;
+    background-clip: content-box !important;
+  }
+  
+  .modal-scrollbar {
+    scrollbar-width: thin !important;
+    scrollbar-color: #d1d5db transparent !important;
+  }
+}
+
+/* Global modal scrollbar override */
+[data-radix-scroll-area-viewport]::-webkit-scrollbar,
+[role="dialog"]::-webkit-scrollbar,
+.modal-scrollbar::-webkit-scrollbar {
+  width: 8px !important;
+}
+
+[data-radix-scroll-area-viewport]::-webkit-scrollbar-track,
+[role="dialog"]::-webkit-scrollbar-track,
+.modal-scrollbar::-webkit-scrollbar-track {
+  background: transparent !important;
+  border-radius: 10px !important;
+}
+
+[data-radix-scroll-area-viewport]::-webkit-scrollbar-thumb,
+[role="dialog"]::-webkit-scrollbar-thumb,
+.modal-scrollbar::-webkit-scrollbar-thumb {
+  background: #d1d5db !important;
+  border-radius: 10px !important;
+  border: 2px solid transparent !important;
+  background-clip: content-box !important;
+}
+
+[data-radix-scroll-area-viewport]::-webkit-scrollbar-thumb:hover,
+[role="dialog"]::-webkit-scrollbar-thumb:hover,
+.modal-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #9ca3af !important;
+  background-clip: content-box !important;
+}
