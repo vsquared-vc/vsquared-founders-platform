@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { createClient } from '@/lib/supabase/client'
 import { Stage, Theme, FundWithRelations } from '@/lib/types/database'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
@@ -46,7 +46,7 @@ export function FundList() {
 
   const supabase = createClient()
 
-  const fetchFunds = async () => {
+  const fetchFunds = useCallback(async () => {
     try {
       setLoading(true)
       
@@ -113,9 +113,9 @@ export function FundList() {
     } finally {
       setLoading(false)
     }
-  }
+  }, [supabase, ITEMS_PER_PAGE])
 
-  const fetchStages = async () => {
+  const fetchStages = useCallback(async () => {
     try {
       const { data, error } = await supabase
         .from('e_stage')
@@ -128,9 +128,9 @@ export function FundList() {
       console.error('Error fetching stages:', error)
       console.error('Stages error details:', JSON.stringify(error, null, 2))
     }
-  }
+  }, [supabase])
 
-  const fetchThemes = async () => {
+  const fetchThemes = useCallback(async () => {
     try {
       const { data, error } = await supabase
         .from('e_ggt')
@@ -143,9 +143,9 @@ export function FundList() {
       console.error('Error fetching themes:', error)
       console.error('Themes error details:', JSON.stringify(error, null, 2))
     }
-  }
+  }, [supabase])
 
-  const applyFilters = () => {
+  const applyFilters = useCallback(() => {
     // Apply filters to ALL funds, not just displayed ones
     let filtered = [...allFunds]
 
@@ -199,7 +199,7 @@ export function FundList() {
     }
 
     setFilteredFunds(filtered)
-  }
+  }, [allFunds, filters])
 
   const formatCurrency = (amount: number | null) => {
     if (!amount) return 'N/A'
@@ -252,7 +252,7 @@ export function FundList() {
     }))
   }
 
-  const loadMoreFunds = () => {
+  const loadMoreFunds = useCallback(() => {
     console.log('loadMoreFunds called', { loadingMore, hasMore, currentPage, allFundsLength: allFunds.length })
     
     if (loadingMore || !hasMore) {
@@ -276,18 +276,18 @@ export function FundList() {
     setCurrentPage(nextPage)
     setHasMore(endIndex < allFunds.length)
     setLoadingMore(false)
-  }
+  }, [loadingMore, hasMore, currentPage, allFunds, ITEMS_PER_PAGE])
 
   // Initial data fetching
   useEffect(() => {
     fetchFunds()
     fetchStages()
     fetchThemes()
-  }, [fetchFunds, fetchStages, fetchThemes])
+  }, [])
 
   useEffect(() => {
     applyFilters()
-  }, [allFunds, filters, applyFilters])
+  }, [allFunds, filters])
 
   // Scroll detection for infinite loading
   useEffect(() => {
@@ -311,7 +311,7 @@ export function FundList() {
 
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
-  }, [loadingMore, hasMore, currentPage, allFunds.length, displayedFunds.length, loadMoreFunds])
+  }, [hasMore, loadingMore, currentPage, allFunds.length, displayedFunds.length])
 
   if (loading) {
     return (
