@@ -21,7 +21,7 @@ interface IntroEmailButtonProps {
   fundId: string
 }
 
-export function IntroEmailButton({ fundName: _fundName, fundId }: IntroEmailButtonProps) {
+export function IntroEmailButton({ fundId }: IntroEmailButtonProps) {
   const [loading, setLoading] = useState(false)
   const [showNameInputModal, setShowNameInputModal] = useState(false)
   const [userFirstNameInput, setUserFirstNameInput] = useState('')
@@ -156,11 +156,14 @@ export function IntroEmailButton({ fundName: _fundName, fundId }: IntroEmailButt
       }
 
       // Create email draft
-      const pcContactFirstName = portfolioCompany.e_team?.t_first_name || 'Team Member'
-      const teamMemberEmail = portfolioCompany.e_team?.t_email || ''
-      const fundContactFirstName = fundData.e_team?.t_first_name || 'Fund Representative'
-      const investmentPartnerName = fundData.e_team?.t_name || 'Investment Partner'
-      const pcName = portfolioCompany.pc_name || 'Our Portfolio Company'
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const pcContactFirstName = (portfolioCompany as any).e_team?.t_first_name || 'Team Member'
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const teamMemberEmail = (portfolioCompany as any).e_team?.t_email || ''
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const fundContactFirstName = (fundData as any).e_team?.t_first_name || 'Fund Representative'
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const pcName = (portfolioCompany as any).pc_name || 'Our Portfolio Company'
       const userFirstName = eUserData.u_first_name || 'User'
 
       const subject = `Introduction Request: ${pcName} ↔ ${fundData.f_name}`

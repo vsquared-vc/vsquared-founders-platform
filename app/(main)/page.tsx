@@ -1,6 +1,3 @@
-import { AuthButton } from "@/components/auth-button";
-import { ThemeSwitcher } from "@/components/theme-switcher";
-import { hasEnvVars } from "@/lib/utils";
 import Link from "next/link";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -22,7 +19,7 @@ export default async function Home() {
       <div className="text-center space-y-6">
         <h1 className="text-4xl font-bold"># Vsquared Ventures Founders Platform</h1>
         <p className="text-xl text-muted-foreground max-w-4xl mx-auto">
-          Welcome to the Vsquared Ventures Founders Platform! Here you will find resources, insights and a community of founders to support your journey. Access expert advice, contacts and partnership offerings, designed to help you on your growth journey. Let's break down barriers and accelerate innovation together!
+          Welcome to the Vsquared Ventures Founders Platform! Here you will find resources, insights and a community of founders to support your journey. Access expert advice, contacts and partnership offerings, designed to help you on your growth journey. Let&apos;s break down barriers and accelerate innovation together!
         </p>
         <p className="text-muted-foreground">
           For any questions surrounding the platform, please reach out to our Head of Platform & Communications:{" "}

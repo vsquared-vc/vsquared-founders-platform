@@ -1,4 +1,3 @@
-import { ThemeProvider } from "next-themes";
 
 export default function AuthLayout({
   children,

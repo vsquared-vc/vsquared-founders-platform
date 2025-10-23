@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { DisclaimerModal } from "@/components/disclaimer-modal";
 import { ThemeSwitcher } from "@/components/theme-switcher";
 

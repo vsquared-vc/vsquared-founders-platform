@@ -7,7 +7,7 @@ import { LogoutButton } from "./logout-button";
 import { useEffect, useState } from "react";
 
 export function ClientAuthButton() {
-  const [user, setUser] = useState<any>(null);
+  const [user, setUser] = useState<any>(null); // eslint-disable-line @typescript-eslint/no-explicit-any
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {

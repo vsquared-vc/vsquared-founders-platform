@@ -46,17 +46,6 @@ export function FundList() {
 
   const supabase = createClient()
 
-  useEffect(() => {
-    fetchFunds()
-    fetchStages()
-    fetchThemes()
-  }, [])
-
-  useEffect(() => {
-    applyFilters()
-  }, [allFunds, filters])
-
-
   const fetchFunds = async () => {
     try {
       setLoading(true)
@@ -289,6 +278,17 @@ export function FundList() {
     setLoadingMore(false)
   }
 
+  // Initial data fetching
+  useEffect(() => {
+    fetchFunds()
+    fetchStages()
+    fetchThemes()
+  }, [fetchFunds, fetchStages, fetchThemes])
+
+  useEffect(() => {
+    applyFilters()
+  }, [allFunds, filters, applyFilters])
+
   // Scroll detection for infinite loading
   useEffect(() => {
     const handleScroll = () => {
@@ -311,7 +311,7 @@ export function FundList() {
 
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
-  }, [loadingMore, hasMore, currentPage, allFunds.length, displayedFunds.length])
+  }, [loadingMore, hasMore, currentPage, allFunds.length, displayedFunds.length, loadMoreFunds])
 
   if (loading) {
     return (
